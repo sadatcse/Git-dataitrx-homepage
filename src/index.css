@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-primary: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-secondary: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+
+  --color-sporty-blue: #0066FF;
+  --color-casual-black: #1A1A1A;
+  --color-concrete: #F5F5F5;
+  --color-earls-green: #C2FF00;
+  --color-fascinating-magenta: #FF00FF;
+  --color-psychedelic-violet: #8A2BE2;
+  --color-blue-green: #00CED1;
+
+  /* Responsive Font Sizes based on user request */
+  --font-size-headline: clamp(3.5rem, 8vw, 6rem); /* 96pt is approx 6rem */
+  --font-size-subheader: clamp(2.5rem, 6vw, 4rem); /* 64pt is approx 4rem */
+  --font-size-body: clamp(1.125rem, 2vw, 1.25rem); /* 20pt is approx 1.25rem */
+  --font-size-btn-text: 1.5rem; /* 24pt is approx 1.5rem */
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-white text-casual-black antialiased overflow-x-hidden font-secondary;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-primary tracking-tight font-bold;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-sporty-blue via-psychedelic-violet to-fascinating-magenta;
+  }
+
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+
+  .bento-grid {
+    @apply grid grid-cols-1 md:grid-cols-4 gap-6;
+  }
+
+  .bento-item {
+    @apply relative overflow-hidden rounded-[2.5rem] border border-casual-black/5 bg-white p-8 transition-all duration-500 hover:shadow-2xl hover:shadow-sporty-blue/10;
+  }
+
+  .btn-primary {
+    @apply bg-sporty-blue text-white px-8 py-4 rounded-2xl font-secondary font-bold text-lg transition-all hover:bg-psychedelic-violet hover:shadow-lg hover:shadow-sporty-blue/30 active:scale-95 flex items-center justify-center gap-2;
+  }
+
+  .btn-secondary {
+    @apply bg-concrete text-casual-black px-8 py-4 rounded-2xl font-secondary font-bold text-lg transition-all hover:bg-white border border-casual-black/10 active:scale-95 flex items-center justify-center gap-2;
+  }
+
+  .section-padding {
+    @apply py-24 lg:py-32;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes mesh {
+  0% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0,0) scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 8s ease-in-out infinite 1s;
+}
+
+.animate-mesh {
+  animation: mesh 20s ease-in-out infinite alternate;
+}
+
+.shimmer-btn {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-concrete;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-casual-black/10 rounded-full border-2 border-concrete hover:bg-casual-black/20 transition-colors;
+}
